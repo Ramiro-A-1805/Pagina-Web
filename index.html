@@ -87,7 +87,7 @@
                     <div class="media-container">
                         <!-- Imagen de ejemplo (Cambia el src por la imagen de tu proyecto) -->
                         <!-- Puedes poner un gif, png o jpg -->
-                        <img src="assets/avatar.png" alt="Vista previa del proyecto" class="project-image"
+                        <img src="https://via.placeholder.com/400" alt="Vista previa del proyecto" class="project-image"
                             id="project-2-img">
 
                         <!-- Si prefieres usar OTRA animación de Rive, comenta la imagen de arriba
@@ -121,8 +121,19 @@
 
     <!-- Scripts funcionales -->
     <script>
+        // --- ANIMACIÓN DE RIVE ---
+        // Aquí puedes cambiar 'https://cdn.rive.app/animations/vehicles.riv' 
+        // por la ruta de tu propio archivo Rive, por ejemplo: 'assets/mi-animacion.riv'
+        const riveAnim = new rive.Rive({
+            src: 'assets/animated_login_bear.riv', // ¡CAMBIA ESTA URL!
+            canvas: document.getElementById('rive-canvas'),
+            autoplay: true,
+            onLoad: () => {
+                riveAnim.resizeDrawingSurfaceToCanvas();
+            },
+        });
+
         // --- EFECTO DE APARICIÓN AL HACER SCROLL (FADE-IN) ---
-        // Ponemos esto primero para que las secciones aparezcan incluso si hay un error con las animaciones
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -131,45 +142,13 @@
             });
         }, { threshold: 0.1 });
 
+        // Aplica el efecto a todos los elementos con la clase "fade-in"
         document.querySelectorAll('.fade-in').forEach(section => {
             observer.observe(section);
         });
-
-        // --- ANIMACIÓN DE RIVE ---
-        try {
-            const canvas1 = document.getElementById('rive-canvas');
-            if (canvas1) {
-                const riveAnim = new rive.Rive({
-                    src: 'assets/animated_login_bear.riv',
-                    canvas: canvas1,
-                    autoplay: true,
-                    onLoad: () => {
-                        riveAnim.resizeDrawingSurfaceToCanvas();
-                    },
-                });
-            }
-        } catch (e) {
-            console.error("Error cargando Rive 1:", e);
-        }
-
-        // --- ANIMACIÓN DE RIVE (PROYECTO 2) ---
-        try {
-            const canvas2 = document.getElementById('rive-canvas-2');
-            if (canvas2) {
-                const riveAnim2 = new rive.Rive({
-                    // Asegúrate de que esto sea un archivo .riv, no una imagen (.png, .jpg)
-                    src: 'assets/tu-otra-animacion.riv', 
-                    canvas: canvas2,
-                    autoplay: true,
-                    onLoad: () => {
-                        riveAnim2.resizeDrawingSurfaceToCanvas();
-                    },
-                });
-            }
-        } catch (e) {
-            console.error("Error cargando Rive 2:", e);
-        }
     </script>
 </body>
 
 </html>
+
+//pendiente por actualizar
