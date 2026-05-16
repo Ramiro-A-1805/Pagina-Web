@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Alumno</title> <!-- Cambia el título de la pestaña aquí -->
+    <meta name="description" content="Portafolio personal de desarrollador">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Script para renderizar animaciones Rive -->
+    <script src="https://unpkg.com/@rive-app/canvas@2.7.0"></script>
+</head>
+
+<body>
+
+    <!-- Header: Foto, Nombre y Profesión -->
+    <header class="hero">
+        <div class="glass-panel">
+            <div class="avatar-container">
+                <!-- Cambia "assets/avatar.png" por la ruta de tu foto si deseas cambiarla -->
+                <img src="assets/cute spider man marvel rivals.png" alt="Foto de perfil" class="avatar">
+            </div>
+            <!-- Cambia tu nombre aquí -->
+            <h1 class="name">Ramiro German Arcila Gamboa</h1>
+            <!-- Cambia tu título o profesión aquí -->
+            <p class="subtitle">Ingeniero en Sistemas</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Sobre mí -->
+        <section id="sobre-mi" class="section glass-card fade-in">
+            <h2>Sobre mí</h2>
+            <!-- Escribe sobre ti aquí (quién eres, qué te apasiona, tus objetivos) -->
+            <p>
+                ¡Hola! Soy un estudiante de Sistemas,apasionado por la tecnología, el diseño y los videojuegos.
+                Este es uno de mis primero proyectos digitales interactivos, por lo que quiero aprender
+                a usar nuevas herramientas y practicar.
+            </p>
+        </section>
+
+        <!-- Sección Habilidades -->
+        <section id="habilidades" class="section glass-card fade-in">
+            <h2>Habilidades</h2>
+            <div class="skills-grid">
+                <!-- Añade o modifica tus habilidades aquí -->
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">Animaciones en Rive</span>
+                <span class="skill-tag">Main spiderman</span>
+                <span class="skill-tag">Diseño UI/UX</span>
+                <span class="skill-tag">Diseño de sitios web</span>
+            </div>
+        </section>
+
+        <!-- Sección Proyectos -->
+        <section id="proyectos" class="section glass-card fade-in">
+            <h2>Proyectos</h2>
+            <div class="projects-grid">
+
+                <!-- Proyecto 1: Animación Rive -->
+                <article class="project-card">
+                    <!-- Título de tu proyecto de Rive -->
+                    <h3>Animación del oso con Rive</h3>
+                    <!-- Descripción del proyecto de Rive -->
+                    <p>Una animación interactiva. En el código de abajo (JavaScript) puedes cambiar la ruta al archivo
+                        .riv para mostrar tu propia animación.</p>
+                    <div class="rive-container">
+                        <!-- Aquí se renderiza la animación de Rive -->
+                        <canvas id="rive-canvas"></canvas>
+                    </div>
+                </article>
+
+                <!-- Proyecto 2 -->
+                <article class="project-card">
+                    <!-- Título de tu segundo proyecto -->
+                    <h3>App Web Interactiva</h3>
+                    <!-- Descripción de tu segundo proyecto -->
+                    <p>Desarrollo de una interfaz de usuario fluida con enfoque en la experiencia de usuario y diseño
+                        responsivo.</p>
+
+                    <!-- Contenedor para imagen o animación -->
+                    <div class="media-container">
+                        <!-- Imagen de ejemplo (Cambia el src por la imagen de tu proyecto) -->
+                        <!-- Puedes poner un gif, png o jpg -->
+                        <img src="assets/avatar.png" alt="Vista previa del proyecto" class="project-image"
+                            id="project-2-img">
+
+                        <!-- Si prefieres usar OTRA animación de Rive, comenta la imagen de arriba
+                             y descomenta la línea de <canvas> de abajo y el código en la sección de <script>. -->
+                        <!-- <canvas id="rive-canvas-2" class="project-canvas"></canvas> -->
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer: Contacto y Redes -->
+    <footer id="contacto" class="footer">
+        <div class="glass-panel">
+            <h2>Contacto</h2>
+            <!-- Modifica tu llamado a la acción o mensaje de contacto aquí -->
+            <p>¿Interesado en trabajar juntos o tienes alguna pregunta? ¡Contáctame!</p>
+
+            <div class="social-links">
+                <!-- Cambia el "#" por el link real a tu GitHub, LinkedIn, etc. -->
+                <a href="#" class="social-btn">GitHub</a>
+                <a href="#" class="social-btn">LinkedIn</a>
+                <a href="mailto:tu-correo@ejemplo.com" class="social-btn">Email</a>
+            </div>
+
+            <!-- Cambia tu nombre aquí para los derechos de autor -->
+            <p class="copyright">© 2026 Nombre del Alumno</p>
+        </div>
+    </footer>
+
+    <!-- Scripts funcionales -->
+    <script>
+        // --- EFECTO DE APARICIÓN AL HACER SCROLL (FADE-IN) ---
+        // Ponemos esto primero para que las secciones aparezcan incluso si hay un error con las animaciones
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- ANIMACIÓN DE RIVE ---
+        try {
+            const canvas1 = document.getElementById('rive-canvas');
+            if (canvas1) {
+                const riveAnim = new rive.Rive({
+                    src: 'assets/animated_login_bear.riv',
+                    canvas: canvas1,
+                    autoplay: true,
+                    onLoad: () => {
+                        riveAnim.resizeDrawingSurfaceToCanvas();
+                    },
+                });
+            }
+        } catch (e) {
+            console.error("Error cargando Rive 1:", e);
+        }
+
+        // --- ANIMACIÓN DE RIVE (PROYECTO 2) ---
+        try {
+            const canvas2 = document.getElementById('rive-canvas-2');
+            if (canvas2) {
+                const riveAnim2 = new rive.Rive({
+                    // Asegúrate de que esto sea un archivo .riv, no una imagen (.png, .jpg)
+                    src: 'assets/tu-otra-animacion.riv', 
+                    canvas: canvas2,
+                    autoplay: true,
+                    onLoad: () => {
+                        riveAnim2.resizeDrawingSurfaceToCanvas();
+                    },
+                });
+            }
+        } catch (e) {
+            console.error("Error cargando Rive 2:", e);
+        }
+    </script>
+</body>
+
+</html>
