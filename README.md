@@ -94,9 +94,9 @@ You only need a modern web browser (Chrome, Firefox, Safari, Edge) to view the p
 **Ramiro German Arcila Gamboa**  
 *Systems Engineer & Creative Developer*
 
-- 📧 Email: [Contact Me](mailto:tu-correo@ejemplo.com)
+- 📧 Email: [Ramiro Arcila-ramiro@gmail.com](mailto:tu-correo@ejemplo.com)
 - 💼 LinkedIn: [Your LinkedIn Profile](#)
-- 🐙 GitHub: [Your GitHub Profile](#)
+- 🐙 GitHub: [Ramiro-A-1805](#)
 
 ---
 
