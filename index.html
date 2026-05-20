@@ -29,7 +29,8 @@
 <body>
 
     <!-- Botón Cambio de Tema -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema claro/oscuro">🌓</button>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"
+        title="Cambiar tema claro/oscuro">🌓</button>
 
     <!-- Header: Foto, Nombre y Profesión -->
     <header class="hero">
@@ -47,7 +48,8 @@
 
     <main>
         <!-- Sección Modelo 3D Principal -->
-        <section id="modelo-principal" class="section glass-card fade-in" style="display: flex; flex-direction: column;">
+        <section id="modelo-principal" class="section glass-card fade-in"
+            style="display: flex; flex-direction: column;">
             <h2>Modelo realizado para la página</h2>
             <div class="media-container model-container" id="three-container" style="position: relative; width: 100%;">
                 <!-- Aquí se renderiza el modelo de Three.js -->
@@ -125,10 +127,14 @@
             <p>¿Interesado en trabajar juntos o tienes alguna pregunta? ¡Contáctame!</p>
 
             <div class="social-links">
-                <a href="https://github.com/Ramiro-A-1805" target="_blank" rel="noopener noreferrer" class="social-btn">GitHub</a>
-                <a href="https://www.instagram.com/gowther_vagabundo/" target="_blank" rel="noopener noreferrer" class="social-btn">Instagram</a>
-                <a href="https://steamcommunity.com/profiles/76561199145267323/" target="_blank" rel="noopener noreferrer" class="social-btn">Steam</a>
-                <a href="https://youtu.be/dQw4w9WgXcQ?si=YEcJRkpeCglI2ha9" target="_blank" rel="noopener noreferrer" class="social-btn">Email</a>
+                <a href="https://github.com/Ramiro-A-1805" target="_blank" rel="noopener noreferrer"
+                    class="social-btn">GitHub</a>
+                <a href="https://www.instagram.com/gowther_vagabundo/" target="_blank" rel="noopener noreferrer"
+                    class="social-btn">Instagram</a>
+                <a href="https://steamcommunity.com/profiles/76561199145267323/" target="_blank"
+                    rel="noopener noreferrer" class="social-btn">Steam</a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=YEcJRkpeCglI2ha9" target="_blank" rel="noopener noreferrer"
+                    class="social-btn">Email</a>
             </div>
 
             <!-- Cambia tu nombre aquí para los derechos de autor -->
@@ -189,6 +195,7 @@
         import * as THREE from 'three';
         import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
         const canvas = document.getElementById('three-canvas');
         const container = document.getElementById('three-container');
@@ -203,9 +210,18 @@
         // Renderizador
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
         renderer.setSize(container.clientWidth, container.clientHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        // Entorno realista HDRI (Hace que la iluminación y colores se vean igual que en Blender)
+        const pmremGenerator = new THREE.PMREMGenerator(renderer);
+        scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+
+        // ESTAS DOS LÍNEAS SON CLAVE PARA LOS COLORES Y TEXTURAS:
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping; // Mapeo de tonos profesional
+        renderer.toneMappingExposure = 1.0; // Control de brillo general
 
         // Controles de Órbita (Rotar, Zoom, Mover)
         const controls = new OrbitControls(camera, renderer.domElement);
@@ -214,41 +230,65 @@
         controls.autoRotate = true; // Hace que gire automáticamente
         controls.autoRotateSpeed = 2.0; // Velocidad de giro
 
-        // Luces
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+        // 2. Iluminación Balanceada (Evita que se queme o se vea amarillo/rojo plano)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Luz de cuarto suave
         scene.add(ambientLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-        directionalLight.position.set(5, 5, 5);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2); // Luz principal definida
+        directionalLight.position.set(5, 8, 5);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.mapSize.width = 1024;
+        directionalLight.shadow.mapSize.height = 1024;
+        directionalLight.shadow.bias = -0.001;
         scene.add(directionalLight);
 
-        // Cargador GLTF
+        // 3. Ajuste automático de texturas al cargar el GLTF
         const loader = new GLTFLoader();
         loader.load(
-            'assets/3d/Setup_proyecto1.glb',
+            'assets/3d/Setup_proyecto4.glb', // Usamos el nombre del nuevo proyecto
             function (gltf) {
                 const model = gltf.scene;
-                
-                // Centrar y escalar el modelo automáticamente
+
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+
+                        if (child.material) {
+                            // Hacer que los planos (como las paredes) se vean por ambos lados
+                            child.material.side = THREE.DoubleSide;
+
+                            // Asegura que Three.js procese correctamente las texturas de imagen
+                            if (child.material.map) {
+                                child.material.map.colorSpace = THREE.SRGBColorSpace;
+                                child.material.map.needsUpdate = true;
+                            }
+                            // Evita que los materiales brillen como espejo si no es necesario
+                            if (child.material.roughness !== undefined) {
+                                child.material.roughness = Math.max(child.material.roughness, 0.2);
+                            }
+                        }
+                    }
+                });
+
+                // Centrar y escalar la cámara/modelo
                 const box = new THREE.Box3().setFromObject(model);
                 const center = box.getCenter(new THREE.Vector3());
                 const size = box.getSize(new THREE.Vector3());
-                
+
+                // Normalizar escala para que no se vea ni muy lejos ni muy cerca
                 const maxDim = Math.max(size.x, size.y, size.z);
                 const scale = 3 / maxDim;
                 model.scale.set(scale, scale, scale);
-                
-                model.position.x = -center.x * scale;
-                model.position.y = -center.y * scale;
-                model.position.z = -center.z * scale;
+                model.position.sub(center.multiplyScalar(scale)); // Centrar modelo exacto
 
                 scene.add(model);
+                controls.target.set(0, 0, 0);
+                camera.position.set(0, 2, 5); // Reiniciar posición cámara para la nueva escala
             },
-            function (xhr) {
-                console.log((xhr.loaded / xhr.total * 100) + '% cargado');
-            },
+            undefined,
             function (error) {
-                console.error('Ocurrió un error al cargar el modelo:', error);
+                console.error(error);
             }
         );
 
@@ -265,10 +305,10 @@
             if (!container) return;
             const width = container.clientWidth;
             const height = container.clientHeight;
-            
+
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
-            
+
             renderer.setSize(width, height);
         });
     </script>
