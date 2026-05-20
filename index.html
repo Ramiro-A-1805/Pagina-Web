@@ -92,8 +92,8 @@
                 <!-- Proyecto 1: Animación interactiva en Rive -->
                 <article class="project-card">
                     <h3>Animación del oso con Rive</h3>
-                    <p>Una animación interactiva. En el código de abajo (JavaScript) puedes cambiar la ruta al archivo
-                        .riv para mostrar tu propia animación.</p>
+                    <p>Una animación interactiva que se realizo en el framework de desarrollo multiplataforma Flutter.
+                    </p>
                     <div class="rive-container">
                         <!-- Canvas dedicado a renderizar la animación de Rive -->
                         <canvas id="rive-canvas"></canvas>
@@ -186,11 +186,11 @@
 
         // Iluminación: Agregando luces a la escena
         // Luz ambiental: Ilumina todo de forma pareja y suave, evita sombras negras completamente oscuras
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); 
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
 
         // Luz direccional: Simula una luz como la del sol, desde una dirección específica y proyecta sombras
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2); 
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
         directionalLight.position.set(5, 8, 5); // Ubicación de la luz en el espacio 3D
         directionalLight.castShadow = true; // Indica que esta luz puede generar sombras
         directionalLight.shadow.mapSize.width = 1024; // Calidad de las sombras
