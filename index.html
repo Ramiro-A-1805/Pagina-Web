@@ -14,9 +14,22 @@
 
     <!-- Script para renderizar animaciones Rive -->
     <script src="https://unpkg.com/@rive-app/canvas@2.7.0"></script>
+
+    <!-- Import Map para Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 
 <body>
+
+    <!-- Botón Cambio de Tema -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema claro/oscuro">🌓</button>
 
     <!-- Header: Foto, Nombre y Profesión -->
     <header class="hero">
@@ -33,6 +46,15 @@
     </header>
 
     <main>
+        <!-- Sección Modelo 3D Principal -->
+        <section id="modelo-principal" class="section glass-card fade-in" style="display: flex; flex-direction: column;">
+            <h2>Modelo realizado para la página</h2>
+            <div class="media-container model-container" id="three-container" style="position: relative; width: 100%;">
+                <!-- Aquí se renderiza el modelo de Three.js -->
+                <canvas id="three-canvas" class="project-canvas"></canvas>
+            </div>
+        </section>
+
         <!-- Sección Sobre mí -->
         <section id="sobre-mi" class="section glass-card fade-in">
             <h2>Sobre mí</h2>
@@ -86,13 +108,8 @@
                     <!-- Contenedor para imagen o animación -->
                     <div class="media-container">
                         <!-- Imagen de ejemplo (Cambia el src por la imagen de tu proyecto) -->
-                        <!-- Puedes poner un gif, png o jpg -->
-                        <img src="https://via.placeholder.com/400" alt="Vista previa del proyecto" class="project-image"
+                        <img src="assets/avatar.png" alt="Vista previa del proyecto" class="project-image"
                             id="project-2-img">
-
-                        <!-- Si prefieres usar OTRA animación de Rive, comenta la imagen de arriba
-                             y descomenta la línea de <canvas> de abajo y el código en la sección de <script>. -->
-                        <!-- <canvas id="rive-canvas-2" class="project-canvas"></canvas> -->
                     </div>
                 </article>
 
@@ -108,10 +125,10 @@
             <p>¿Interesado en trabajar juntos o tienes alguna pregunta? ¡Contáctame!</p>
 
             <div class="social-links">
-                <!-- Cambia el "#" por el link real a tu GitHub, LinkedIn, etc. -->
-                <a href="#" class="social-btn">GitHub</a>
-                <a href="#" class="social-btn">LinkedIn</a>
-                <a href="mailto:tu-correo@ejemplo.com" class="social-btn">Email</a>
+                <a href="https://github.com/Ramiro-A-1805" target="_blank" rel="noopener noreferrer" class="social-btn">GitHub</a>
+                <a href="https://www.instagram.com/gowther_vagabundo/" target="_blank" rel="noopener noreferrer" class="social-btn">Instagram</a>
+                <a href="https://steamcommunity.com/profiles/76561199145267323/" target="_blank" rel="noopener noreferrer" class="social-btn">Steam</a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=YEcJRkpeCglI2ha9" target="_blank" rel="noopener noreferrer" class="social-btn">Email</a>
             </div>
 
             <!-- Cambia tu nombre aquí para los derechos de autor -->
@@ -121,6 +138,25 @@
 
     <!-- Scripts funcionales -->
     <script>
+        // --- CAMBIO DE TEMA CLARO/OSCURO ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        // Aplicar el tema guardado
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-theme');
+        }
+
+        // Evento de click para alternar el tema
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            let theme = 'dark';
+            if (document.body.classList.contains('light-theme')) {
+                theme = 'light';
+            }
+            localStorage.setItem('theme', theme);
+        });
+
         // --- ANIMACIÓN DE RIVE ---
         // Aquí puedes cambiar 'https://cdn.rive.app/animations/vehicles.riv' 
         // por la ruta de tu propio archivo Rive, por ejemplo: 'assets/mi-animacion.riv'
@@ -145,6 +181,95 @@
         // Aplica el efecto a todos los elementos con la clase "fade-in"
         document.querySelectorAll('.fade-in').forEach(section => {
             observer.observe(section);
+        });
+    </script>
+
+    <!-- Script para Three.js y Modelo GLB -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        const canvas = document.getElementById('three-canvas');
+        const container = document.getElementById('three-container');
+
+        // Escena
+        const scene = new THREE.Scene();
+
+        // Cámara
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(0, 2, 5); // Posición inicial de la cámara
+
+        // Renderizador
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1;
+
+        // Controles de Órbita (Rotar, Zoom, Mover)
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.autoRotate = true; // Hace que gire automáticamente
+        controls.autoRotateSpeed = 2.0; // Velocidad de giro
+
+        // Luces
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        // Cargador GLTF
+        const loader = new GLTFLoader();
+        loader.load(
+            'assets/3d/Setup_proyecto1.glb',
+            function (gltf) {
+                const model = gltf.scene;
+                
+                // Centrar y escalar el modelo automáticamente
+                const box = new THREE.Box3().setFromObject(model);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+                
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = 3 / maxDim;
+                model.scale.set(scale, scale, scale);
+                
+                model.position.x = -center.x * scale;
+                model.position.y = -center.y * scale;
+                model.position.z = -center.z * scale;
+
+                scene.add(model);
+            },
+            function (xhr) {
+                console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+            },
+            function (error) {
+                console.error('Ocurrió un error al cargar el modelo:', error);
+            }
+        );
+
+        // Animación / Render Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); // Necesario si enableDamping es true
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Manejar redimensionamiento de la ventana
+        window.addEventListener('resize', () => {
+            if (!container) return;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            
+            renderer.setSize(width, height);
         });
     </script>
 </body>
