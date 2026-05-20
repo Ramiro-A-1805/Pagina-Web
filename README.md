@@ -1,10 +1,20 @@
+<!-- ==========================================================================
+     INICIO DEL DOCUMENTO DE PRESENTACIÓN (README)
+     Nota: Este archivo sirve como la cara frontal de tu proyecto en plataformas como GitHub.
+     El contenido está escrito en Markdown.
+========================================================================== -->
+
 <div align="center">
+  <!-- Imágen generada dinámicamente que funciona como banner para el título del repositorio -->
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Interactive%203D%20Portfolio&fontSize=50&fontAlignY=38&desc=Developer%20Showcase%20&descAlignY=55&descAlign=62" />
 
+  <!-- Título principal -->
   # 🚀 My Interactive 3D Portfolio
 
+  <!-- Descripción breve del proyecto -->
   **A digital space designed to introduce who I am, my characteristics as a developer, my projects, and my passion for 3D design.**
 
+  <!-- Botones estéticos (badges) que muestran las tecnologías usadas -->
   [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
   [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
   [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -14,12 +24,14 @@
 
 ---
 
+<!-- Sección que describe la motivación detrás del proyecto -->
 ## 🌟 Purpose of the Page
 
 This website was created with one main goal: to serve as an **interactive cover letter**. More than just a simple resume, it is a space where I can express my identity as a developer and as a professional.
 
 Here, I aim to showcase not only my technical skills but also my interests, my creative approach, and how I integrate different disciplines (such as web development and 3D modeling) to create unique experiences.
 
+<!-- Resumen de las partes en las que está dividida la página web real -->
 ## 🔍 What will you find here?
 
 As you explore this portfolio, you will encounter the following sections designed to give you a complete overview of my profile:
@@ -31,6 +43,7 @@ As you explore this portfolio, you will encounter the following sections designe
 
 ---
 
+<!-- Sección que explica específicamente el uso de Blender y su impacto en la página -->
 ## 🎨 The 3D Model in Blender
 
 A fundamental aspect of this portfolio is the integration of a **custom 3D model, designed and rendered using Blender**. 
@@ -42,6 +55,7 @@ This model is not just a visual ornament, but a demonstration of:
 
 ---
 
+<!-- Lista de la stack técnica -->
 ## 🛠️ Technologies Used
 
 *   **HTML5 & CSS3:** For the semantic structure and modern design featuring "glassmorphism" (frosted glass) effects.
@@ -51,6 +65,7 @@ This model is not just a visual ornament, but a demonstration of:
 
 ---
 
+<!-- Información de contacto del autor -->
 ## 👨‍💻 Author
 
 **Ramiro German Arcila Gamboa**  
@@ -61,6 +76,7 @@ This model is not just a visual ornament, but a demonstration of:
 
 ---
 
+<!-- Mensaje final de pie de página -->
 <div align="center">
   <p>Built with dedication, creativity, and a passion for code and 3D.</p>
 </div>

@@ -4,18 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio de Alumno</title> <!-- Cambia el título de la pestaña aquí -->
+    <!-- Título que aparece en la pestaña del navegador -->
+    <title>Portafolio de Alumno</title>
+    <!-- Descripción corta para SEO y motores de búsqueda -->
     <meta name="description" content="Portafolio personal de desarrollador">
 
+    <!-- Enlace a la hoja de estilos externa -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Importa la fuente Inter con distintos grosores -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <!-- Script para renderizar animaciones Rive -->
+    <!-- Script para renderizar animaciones de Rive de forma interactiva -->
     <script src="https://unpkg.com/@rive-app/canvas@2.7.0"></script>
 
-    <!-- Import Map para Three.js -->
+    <!-- Import Map para Three.js: Define las rutas de donde se cargarán los módulos de Three.js -->
     <script type="importmap">
         {
             "imports": {
@@ -28,39 +31,39 @@
 
 <body>
 
-    <!-- Botón Cambio de Tema -->
+    <!-- Botón Cambio de Tema: Permite alternar entre modo claro y oscuro -->
     <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"
         title="Cambiar tema claro/oscuro">🌓</button>
 
-    <!-- Header: Foto, Nombre y Profesión -->
+    <!-- Header: Sección superior con la foto, nombre y profesión -->
     <header class="hero">
         <div class="glass-panel">
             <div class="avatar-container">
-                <!-- Cambia "assets/avatar.png" por la ruta de tu foto si deseas cambiarla -->
+                <!-- Imagen de perfil del desarrollador -->
                 <img src="assets/cute spider man marvel rivals.png" alt="Foto de perfil" class="avatar">
             </div>
-            <!-- Cambia tu nombre aquí -->
+            <!-- Nombre principal del desarrollador -->
             <h1 class="name">Ramiro German Arcila Gamboa</h1>
-            <!-- Cambia tu título o profesión aquí -->
+            <!-- Título profesional -->
             <p class="subtitle">Ingeniero en Sistemas</p>
         </div>
     </header>
 
     <main>
-        <!-- Sección Modelo 3D Principal -->
+        <!-- Sección Modelo 3D Principal: Contiene el canvas donde se muestra el modelo exportado de Blender -->
         <section id="modelo-principal" class="section glass-card fade-in"
             style="display: flex; flex-direction: column;">
             <h2>Modelo realizado para la página</h2>
             <div class="media-container model-container" id="three-container" style="position: relative; width: 100%;">
-                <!-- Aquí se renderiza el modelo de Three.js -->
+                <!-- Canvas dedicado al renderizado del modelo de Three.js -->
                 <canvas id="three-canvas" class="project-canvas"></canvas>
             </div>
         </section>
 
-        <!-- Sección Sobre mí -->
+        <!-- Sección Sobre mí: Información personal del desarrollador -->
         <section id="sobre-mi" class="section glass-card fade-in">
             <h2>Sobre mí</h2>
-            <!-- Escribe sobre ti aquí (quién eres, qué te apasiona, tus objetivos) -->
+            <!-- Texto descriptivo sobre los intereses y pasiones del usuario -->
             <p>
                 ¡Hola! Soy un estudiante de Sistemas,apasionado por la tecnología, el diseño y los videojuegos.
                 Este es uno de mis primero proyectos digitales interactivos, por lo que quiero aprender
@@ -68,11 +71,11 @@
             </p>
         </section>
 
-        <!-- Sección Habilidades -->
+        <!-- Sección Habilidades: Lista visual de los conocimientos técnicos y blandos -->
         <section id="habilidades" class="section glass-card fade-in">
             <h2>Habilidades</h2>
             <div class="skills-grid">
-                <!-- Añade o modifica tus habilidades aquí -->
+                <!-- Etiquetas que muestran cada habilidad individual -->
                 <span class="skill-tag">HTML</span>
                 <span class="skill-tag">Animaciones en Rive</span>
                 <span class="skill-tag">Main spiderman</span>
@@ -81,35 +84,29 @@
             </div>
         </section>
 
-        <!-- Sección Proyectos -->
+        <!-- Sección Proyectos: Galería de los trabajos realizados -->
         <section id="proyectos" class="section glass-card fade-in">
             <h2>Proyectos</h2>
             <div class="projects-grid">
 
-                <!-- Proyecto 1: Animación Rive -->
+                <!-- Proyecto 1: Animación interactiva en Rive -->
                 <article class="project-card">
-                    <!-- Título de tu proyecto de Rive -->
                     <h3>Animación del oso con Rive</h3>
-                    <!-- Descripción del proyecto de Rive -->
                     <p>Una animación interactiva. En el código de abajo (JavaScript) puedes cambiar la ruta al archivo
                         .riv para mostrar tu propia animación.</p>
                     <div class="rive-container">
-                        <!-- Aquí se renderiza la animación de Rive -->
+                        <!-- Canvas dedicado a renderizar la animación de Rive -->
                         <canvas id="rive-canvas"></canvas>
                     </div>
                 </article>
 
-                <!-- Proyecto 2 -->
+                <!-- Proyecto 2: Ejemplo estático de una App Web -->
                 <article class="project-card">
-                    <!-- Título de tu segundo proyecto -->
                     <h3>App Web Interactiva</h3>
-                    <!-- Descripción de tu segundo proyecto -->
                     <p>Desarrollo de una interfaz de usuario fluida con enfoque en la experiencia de usuario y diseño
                         responsivo.</p>
-
-                    <!-- Contenedor para imagen o animación -->
                     <div class="media-container">
-                        <!-- Imagen de ejemplo (Cambia el src por la imagen de tu proyecto) -->
+                        <!-- Imagen representativa del segundo proyecto -->
                         <img src="assets/avatar.png" alt="Vista previa del proyecto" class="project-image"
                             id="project-2-img">
                     </div>
@@ -119,14 +116,14 @@
         </section>
     </main>
 
-    <!-- Footer: Contacto y Redes -->
+    <!-- Footer: Sección inferior con información de contacto y enlaces a redes sociales -->
     <footer id="contacto" class="footer">
         <div class="glass-panel">
             <h2>Contacto</h2>
-            <!-- Modifica tu llamado a la acción o mensaje de contacto aquí -->
             <p>¿Interesado en trabajar juntos o tienes alguna pregunta? ¡Contáctame!</p>
 
             <div class="social-links">
+                <!-- Enlaces hacia las distintas redes y medios de contacto -->
                 <a href="https://github.com/Ramiro-A-1805" target="_blank" rel="noopener noreferrer"
                     class="social-btn">GitHub</a>
                 <a href="https://www.instagram.com/gowther_vagabundo/" target="_blank" rel="noopener noreferrer"
@@ -137,133 +134,96 @@
                     class="social-btn">Email</a>
             </div>
 
-            <!-- Cambia tu nombre aquí para los derechos de autor -->
+            <!-- Información de derechos de autor -->
             <p class="copyright">© 2026 Nombre del Alumno</p>
         </div>
     </footer>
 
-    <!-- Scripts funcionales -->
-    <script>
-        // --- CAMBIO DE TEMA CLARO/OSCURO ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const currentTheme = localStorage.getItem('theme');
+    <!-- Scripts funcionales (Lógica de interfaz de usuario) -->
+    <script src="script.js"></script>
 
-        // Aplicar el tema guardado
-        if (currentTheme === 'light') {
-            document.body.classList.add('light-theme');
-        }
-
-        // Evento de click para alternar el tema
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            let theme = 'dark';
-            if (document.body.classList.contains('light-theme')) {
-                theme = 'light';
-            }
-            localStorage.setItem('theme', theme);
-        });
-
-        // --- ANIMACIÓN DE RIVE ---
-        // Aquí puedes cambiar 'https://cdn.rive.app/animations/vehicles.riv' 
-        // por la ruta de tu propio archivo Rive, por ejemplo: 'assets/mi-animacion.riv'
-        const riveAnim = new rive.Rive({
-            src: 'assets/animated_login_bear.riv', // ¡CAMBIA ESTA URL!
-            canvas: document.getElementById('rive-canvas'),
-            autoplay: true,
-            onLoad: () => {
-                riveAnim.resizeDrawingSurfaceToCanvas();
-            },
-        });
-
-        // --- EFECTO DE APARICIÓN AL HACER SCROLL (FADE-IN) ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        // Aplica el efecto a todos los elementos con la clase "fade-in"
-        document.querySelectorAll('.fade-in').forEach(section => {
-            observer.observe(section);
-        });
-    </script>
-
-    <!-- Script para Three.js y Modelo GLB -->
+    <!-- Script para Three.js y Modelo GLB (Lógica del 3D) -->
     <script type="module">
+        // Importación de las librerías necesarias de Three.js (Motor, Cargador GLTF, Controles y Entorno)
         import * as THREE from 'three';
         import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
         import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
+        // Elementos del DOM donde se insertará el motor de render 3D
         const canvas = document.getElementById('three-canvas');
         const container = document.getElementById('three-container');
 
-        // Escena
+        // Escena: El entorno virtual principal donde se colocarán modelos y luces
         const scene = new THREE.Scene();
 
-        // Cámara
+        // Cámara: Define la perspectiva desde donde el usuario ve la escena. (FOV, relación de aspecto, cerca, lejos)
         const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.set(0, 2, 5); // Posición inicial de la cámara
+        camera.position.set(0, 2, 5); // Establece la posición inicial de la cámara en los ejes X, Y, Z
 
-        // Renderizador
+        // Renderizador: Dibuja la escena utilizando WebGL. Se habilita antialias para bordes suaves y alpha para fondo transparente
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.setSize(container.clientWidth, container.clientHeight); // Ajusta el tamaño al contenedor
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimización para pantallas de alta densidad de píxeles
+        renderer.shadowMap.enabled = true; // Permite el uso de sombras proyectadas
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Utiliza un algoritmo para suavizar los bordes de las sombras
 
-        // Entorno realista HDRI (Hace que la iluminación y colores se vean igual que en Blender)
+        // Entorno realista HDRI: Proporciona iluminación basada en imagen para simular reflejos y luces realistas (como en Blender)
         const pmremGenerator = new THREE.PMREMGenerator(renderer);
         scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
 
-        // ESTAS DOS LÍNEAS SON CLAVE PARA LOS COLORES Y TEXTURAS:
-        renderer.outputColorSpace = THREE.SRGBColorSpace;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping; // Mapeo de tonos profesional
-        renderer.toneMappingExposure = 1.0; // Control de brillo general
+        // Configuración de renderizado de colores (Tone Mapping) para asegurar la precisión de texturas y materiales
+        renderer.outputColorSpace = THREE.SRGBColorSpace; // Espacio de color estándar para web
+        renderer.toneMapping = THREE.ACESFilmicToneMapping; // Mapeo de tonos cinematográfico (evita sobreexposición)
+        renderer.toneMappingExposure = 1.0; // Define la cantidad de brillo general del render
 
-        // Controles de Órbita (Rotar, Zoom, Mover)
+        // Controles de Órbita: Permiten al usuario rotar, hacer zoom y mover la cámara alrededor del modelo con el ratón
         const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.autoRotate = true; // Hace que gire automáticamente
-        controls.autoRotateSpeed = 2.0; // Velocidad de giro
+        controls.enableDamping = true; // Agrega inercia (suavidad) al movimiento de la cámara
+        controls.dampingFactor = 0.05; // Ajusta el nivel de la inercia
+        controls.autoRotate = true; // Activa la rotación automática de la cámara alrededor del centro
+        controls.autoRotateSpeed = 2.0; // Velocidad a la que gira la cámara automáticamente
 
-        // 2. Iluminación Balanceada (Evita que se queme o se vea amarillo/rojo plano)
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Luz de cuarto suave
+        // Iluminación: Agregando luces a la escena
+        // Luz ambiental: Ilumina todo de forma pareja y suave, evita sombras negras completamente oscuras
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); 
         scene.add(ambientLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2); // Luz principal definida
-        directionalLight.position.set(5, 8, 5);
-        directionalLight.castShadow = true;
-        directionalLight.shadow.mapSize.width = 1024;
+        // Luz direccional: Simula una luz como la del sol, desde una dirección específica y proyecta sombras
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2); 
+        directionalLight.position.set(5, 8, 5); // Ubicación de la luz en el espacio 3D
+        directionalLight.castShadow = true; // Indica que esta luz puede generar sombras
+        directionalLight.shadow.mapSize.width = 1024; // Calidad de las sombras
         directionalLight.shadow.mapSize.height = 1024;
-        directionalLight.shadow.bias = -0.001;
+        directionalLight.shadow.bias = -0.001; // Ajuste para prevenir artefactos visuales en las sombras
         scene.add(directionalLight);
 
-        // 3. Ajuste automático de texturas al cargar el GLTF
+        // Cargador del modelo GLTF/GLB: Carga el archivo 3D de Blender en formato web
         const loader = new GLTFLoader();
         loader.load(
-            'assets/3d/Setup_proyecto4.glb', // Usamos el nombre del nuevo proyecto
+            'assets/3d/Setup_proyecto4.glb', // Ruta del modelo a cargar
             function (gltf) {
+                // gltf.scene es la raíz que contiene todos los mallas, materiales y grupos exportados
                 const model = gltf.scene;
 
+                // Recorremos cada parte (child) del modelo 3D
                 model.traverse((child) => {
+                    // Si la parte es una malla geométrica (Mesh)
                     if (child.isMesh) {
-                        child.castShadow = true;
-                        child.receiveShadow = true;
+                        child.castShadow = true; // Que el objeto proyecte sombra
+                        child.receiveShadow = true; // Que el objeto pueda recibir sombras de otros
 
+                        // Si el objeto tiene un material asignado (colores, texturas)
                         if (child.material) {
-                            // Hacer que los planos (como las paredes) se vean por ambos lados
+                            // Fuerza a que las superficies se rendericen por ambos lados (útil para planos como hojas, paredes)
                             child.material.side = THREE.DoubleSide;
 
-                            // Asegura que Three.js procese correctamente las texturas de imagen
+                            // Si el material tiene una textura de imagen (Mapa de color)
                             if (child.material.map) {
-                                child.material.map.colorSpace = THREE.SRGBColorSpace;
-                                child.material.map.needsUpdate = true;
+                                child.material.map.colorSpace = THREE.SRGBColorSpace; // Asegura que la textura no se vea deslavada
+                                child.material.map.needsUpdate = true; // Refresca la textura en memoria
                             }
-                            // Evita que los materiales brillen como espejo si no es necesario
+                            // Si el material tiene una propiedad de rugosidad (roughness), aplicamos un mínimo para evitar que brille como espejo
                             if (child.material.roughness !== undefined) {
                                 child.material.roughness = Math.max(child.material.roughness, 0.2);
                             }
@@ -271,49 +231,48 @@
                     }
                 });
 
-                // Centrar y escalar la cámara/modelo
-                const box = new THREE.Box3().setFromObject(model);
-                const center = box.getCenter(new THREE.Vector3());
-                const size = box.getSize(new THREE.Vector3());
+                // Lógica de centrado automático del modelo
+                const box = new THREE.Box3().setFromObject(model); // Calcula una caja invisible que encierra el modelo
+                const center = box.getCenter(new THREE.Vector3()); // Encuentra el punto central de esa caja
+                const size = box.getSize(new THREE.Vector3()); // Obtiene las dimensiones de alto, ancho y profundo de la caja
 
-                // Normalizar escala para que no se vea ni muy lejos ni muy cerca
+                // Normalización de escala: Ajusta el tamaño del modelo basándose en su dimensión más larga
                 const maxDim = Math.max(size.x, size.y, size.z);
-                const scale = 3 / maxDim;
-                model.scale.set(scale, scale, scale);
-                model.position.sub(center.multiplyScalar(scale)); // Centrar modelo exacto
+                const scale = 3 / maxDim; // Calcula un factor de escala para que se ajuste perfectamente a la pantalla
+                model.scale.set(scale, scale, scale); // Aplica el factor de escala
+                model.position.sub(center.multiplyScalar(scale)); // Centra el modelo restando su centro escalado
 
-                scene.add(model);
-                controls.target.set(0, 0, 0);
-                camera.position.set(0, 2, 5); // Reiniciar posición cámara para la nueva escala
+                scene.add(model); // Añade el modelo procesado y centrado a la escena
+                controls.target.set(0, 0, 0); // Ajusta el punto de giro de la cámara (OrbitControls) al centro de la escena
+                camera.position.set(0, 2, 5); // Reinicia la cámara a su posición óptima post-escala
             },
-            undefined,
+            undefined, // Callback opcional de progreso (no usado aquí)
             function (error) {
+                // Callback en caso de error durante la carga del modelo
                 console.error(error);
             }
         );
 
-        // Animación / Render Loop
+        // Ciclo de Animación (Render Loop): Función que se ejecuta múltiples veces por segundo (~60 fps)
         function animate() {
-            requestAnimationFrame(animate);
-            controls.update(); // Necesario si enableDamping es true
-            renderer.render(scene, camera);
+            requestAnimationFrame(animate); // Programa la próxima ejecución para el próximo fotograma de la pantalla
+            controls.update(); // Actualiza los controles (obligatorio cuando enableDamping está activado)
+            renderer.render(scene, camera); // Le dice al renderizador que dibuje la escena vista a través de la cámara
         }
-        animate();
+        animate(); // Inicia el ciclo
 
-        // Manejar redimensionamiento de la ventana
+        // Event listener: Se dispara cada vez que cambia el tamaño de la ventana (Redimensionamiento)
         window.addEventListener('resize', () => {
-            if (!container) return;
-            const width = container.clientWidth;
-            const height = container.clientHeight;
+            if (!container) return; // Si no hay contenedor no hace nada
+            const width = container.clientWidth; // Obtiene el nuevo ancho
+            const height = container.clientHeight; // Obtiene el nuevo alto
 
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
+            camera.aspect = width / height; // Ajusta la relación de aspecto de la cámara
+            camera.updateProjectionMatrix(); // Recalcula la perspectiva
 
-            renderer.setSize(width, height);
+            renderer.setSize(width, height); // Ajusta el tamaño del renderizador
         });
     </script>
 </body>
 
 </html>
-
-//pendiente por actualizar

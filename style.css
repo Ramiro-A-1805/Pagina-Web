@@ -1,160 +1,168 @@
-/* VARIABLES DE COLOR Y ESTILO */
-/* Puedes cambiar estos colores para personalizar tu portafolio */
+/* ==========================================================================
+   VARIABLES DE COLOR Y ESTILO (CSS Custom Properties)
+   Permiten cambiar el esquema de colores de toda la página editando solo estos valores.
+   ========================================================================== */
 :root {
-    --bg-color: #0b2545;
-    /* Azul oscuro simple */
-    --text-main: #ffffff;
-    /* Blanco */
-    --text-muted: #b0c4de;
-    /* Azul claro apagado */
-    --accent: #d90429;
-    /* Rojo sólido */
-    --accent-hover: #ef233c;
-    /* Rojo un poco más claro */
+    --bg-color: #0b2545;      /* Color de fondo principal: Azul oscuro */
+    --text-main: #ffffff;     /* Color del texto principal: Blanco para contraste */
+    --text-muted: #b0c4de;    /* Color del texto secundario (párrafos): Azul claro apagado */
+    --accent: #d90429;        /* Color de acento (botones, títulos): Rojo sólido */
+    --accent-hover: #ef233c;  /* Color al pasar el cursor sobre el acento: Rojo un poco más claro */
 
-    /* Contenedores sólidos en lugar de vidrio */
-    --glass-bg: #13315c;
-    /* Azul intermedio sólido */
-    --glass-border: #134074;
+    /* Variables para los contenedores tipo tarjeta */
+    --glass-bg: #13315c;      /* Color de fondo del contenedor: Azul intermedio sólido */
+    --glass-border: #134074;  /* Color del borde de la tarjeta */
 
-    --card-bg: #13315c;
-    --media-bg: #0b2545;
-    --btn-bg: #134074;
+    --card-bg: #13315c;       /* Fondo de las tarjetas individuales */
+    --media-bg: #0b2545;      /* Fondo para contenedores de medios (imágenes, Rive) */
+    --btn-bg: #134074;        /* Fondo para botones estándar */
 }
 
+/* ==========================================================================
+   VARIABLES PARA EL TEMA CLARO
+   Estas variables sobrescriben las originales cuando la clase 'light-theme' se aplica al body.
+   ========================================================================== */
 body.light-theme {
-    --bg-color: #e0e1dd;
-    /* Fondo claro sencillo */
-    --text-main: #0b2545;
-    /* Azul oscuro */
-    --text-muted: #415a77;
-    --accent: #d90429;
-    /* Rojo sólido */
+    --bg-color: #e0e1dd;      /* Fondo principal: Claro sencillo */
+    --text-main: #0b2545;     /* Texto principal ahora es oscuro: Azul oscuro */
+    --text-muted: #415a77;    /* Texto secundario también oscuro */
+    --accent: #d90429;        /* Se mantiene el acento rojo */
     --accent-hover: #ef233c;
 
-    --glass-bg: #ffffff;
-    --glass-border: #cccccc;
+    --glass-bg: #ffffff;      /* Tarjetas en color blanco */
+    --glass-border: #cccccc;  /* Borde de tarjetas en gris claro */
 
     --card-bg: #ffffff;
-    --media-bg: #f0f0f0;
+    --media-bg: #f0f0f0;      /* Fondo gris muy sutil para contenedores multimedia */
     --btn-bg: #e0e1dd;
 
-    background-color: var(--bg-color);
-    background-image: none;
+    background-color: var(--bg-color); /* Aplica el nuevo fondo */
+    background-image: none;            /* Asegura que no haya imagen de fondo */
 }
 
-/* RESETEO BÁSICO */
+/* ==========================================================================
+   RESETEO BÁSICO GLOBAL
+   Elimina los márgenes y paddings por defecto del navegador para mayor control.
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;   /* Hace que padding y borders no sumen al tamaño final del contenedor */
 }
 
+/* ==========================================================================
+   ESTILOS BASE DEL CUERPO (BODY)
+   ========================================================================== */
 body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
-    overflow-x: hidden;
-
-    /* Fondo sólido y sencillo */
-    background-image: none;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; /* Tipografía principal */
+    background-color: var(--bg-color); /* Fondo en base a las variables */
+    color: var(--text-main);           /* Texto global */
+    line-height: 1.6;                  /* Espaciado entre líneas para mejor lectura */
+    overflow-x: hidden;                /* Evita que se forme una barra de scroll horizontal */
+    background-image: none;            /* Fondo sólido y sencillo */
 }
 
-/* TIPOGRAFÍA */
+/* ==========================================================================
+   ESTILOS DE TIPOGRAFÍA (TÍTULOS Y PÁRRAFOS)
+   ========================================================================== */
 h1,
 h2,
 h3 {
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
+    font-weight: 800;          /* Grosor máximo de la fuente para títulos */
+    letter-spacing: -0.03em;   /* Junta ligeramente las letras (kerning) para un look moderno */
+    margin-bottom: 1rem;       /* Separación hacia abajo */
 }
 
 h2 {
-    font-size: 2.5rem;
-    color: var(--accent);
+    font-size: 2.5rem;         /* Tamaño del título de sección */
+    color: var(--accent);      /* Usa el color rojo definido arriba */
 }
 
 p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
+    color: var(--text-muted);  /* Párrafos con color secundario */
+    font-size: 1.1rem;         /* Tamaño base de texto un poco mayor que el default */
 }
 
-/* EFECTO CRISTAL (GLASSMORPHISM) */
+/* ==========================================================================
+   ESTILOS DE CONTENEDORES - EFECTO CRISTAL (GLASSMORPHISM)
+   ========================================================================== */
+/* Panel grande utilizado en Header y Footer */
 .glass-panel {
     background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 3rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(16px);            /* Difumina lo que haya detrás del panel (efecto vidrio) */
+    -webkit-backdrop-filter: blur(16px);    /* Soporte para el difuminado en navegadores basados en WebKit (Safari) */
+    border: 1px solid var(--glass-border);  /* Borde semitransparente */
+    border-radius: 24px;                    /* Bordes altamente redondeados */
+    padding: 3rem;                          /* Espaciado interno generoso */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Sombra exterior profunda y suave */
 }
 
+/* Tarjeta utilizada para secciones de contenido individual (Sobre mí, Proyectos, etc.) */
 .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);            /* Difuminado menor que el panel principal */
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     padding: 2.5rem;
+    /* Transición suave para cualquier cambio en tamaño, sombra o color de borde (ej. al hacer hover) */
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
+/* Efecto al pasar el ratón por encima de una tarjeta de contenido */
 .glass-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-    border-color: var(--accent);
+    transform: translateY(-5px);                /* Eleva la tarjeta ligeramente hacia arriba */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* Refuerza la sombra creando la ilusión de que está flotando */
+    border-color: var(--accent);                /* Pinta el borde con el color de acento */
 }
 
-/* ESTRUCTURA PRINCIPAL */
+/* ==========================================================================
+   ESTRUCTURA PRINCIPAL Y ENCABEZADO (HERO)
+   ========================================================================== */
 main {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 900px;           /* Limita el ancho en pantallas grandes para que el texto no sea interminable */
+    margin: 0 auto;             /* Centra el contenedor principal horizontalmente */
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    /* Espacio entre secciones */
+    display: flex;              /* Usamos Flexbox para posicionar los hijos */
+    flex-direction: column;     /* Coloca los elementos uno debajo de otro */
+    gap: 4rem;                  /* Espacio consistente entre cada una de las secciones principales */
 }
 
-/* SECCIÓN HERO (ENCABEZADO) */
 .hero {
-    min-height: 80vh;
+    min-height: 80vh;           /* Ocupa como mínimo el 80% del alto de la ventana visible del navegador */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center;        /* Centrado vertical */
+    justify-content: center;    /* Centrado horizontal */
     padding: 2rem;
-    text-align: center;
+    text-align: center;         /* Todo el texto dentro de .hero estará centrado */
 }
 
 .hero .glass-panel {
-    max-width: 600px;
+    max-width: 600px;           /* Limita el ancho del panel central */
     width: 100%;
 }
 
+/* Contenedor del avatar de perfil */
 .avatar-container {
     width: 160px;
     height: 160px;
-    margin: 0 auto 2rem;
-    border-radius: 50%;
+    margin: 0 auto 2rem;        /* Lo centra y le da margen inferior */
+    border-radius: 50%;         /* Lo hace perfectamente circular */
     padding: 4px;
-    /* Borde rojo sólido animado */
-    background: var(--accent);
-    box-shadow: 0 0 15px rgba(217, 4, 41, 0.4);
+    background: var(--accent);  /* Fondo de color de acento */
+    box-shadow: 0 0 15px rgba(217, 4, 41, 0.4); /* Resplandor rojo estilo neón/brillo */
 }
 
 .avatar {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;          /* Evita que la imagen se distorsione; llena el área recortando el sobrante */
     border-radius: 50%;
-    border: 4px solid var(--bg-color);
+    border: 4px solid var(--bg-color); /* Anillo que separa el avatar del fondo exterior brillante */
 }
 
 .name {
-    font-size: 3.5rem;
-    /* Texto de color sólido */
+    font-size: 3.5rem;          /* Título muy grande para el nombre */
     color: var(--text-main);
     margin-bottom: 0.5rem;
 }
@@ -162,46 +170,52 @@ main {
 .subtitle {
     font-size: 1.3rem;
     color: var(--text-main);
-    opacity: 0.9;
+    opacity: 0.9;               /* Hace que el texto sea muy sutilmente transparente */
 }
 
-/* SECCIÓN HABILIDADES */
+/* ==========================================================================
+   SECCIÓN DE HABILIDADES (SKILLS)
+   ========================================================================== */
 .skills-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-wrap: wrap;            /* Permite que las etiquetas bajen a la siguiente línea si no caben */
+    gap: 1rem;                  /* Espacio uniforme entre etiquetas */
     margin-top: 1.5rem;
 }
 
 .skill-tag {
     background: var(--glass-bg);
     color: var(--accent-hover);
-    padding: 0.6rem 1.4rem;
-    border-radius: 999px;
+    padding: 0.6rem 1.4rem;     /* Relleno interno (arriba/abajo, izquierda/derecha) */
+    border-radius: 999px;       /* Crea un borde con forma de píldora redondeada */
     font-weight: 600;
     border: 1px solid var(--accent);
-    transition: all 0.3s ease;
-    cursor: default;
+    transition: all 0.3s ease;  /* Anima cualquier cambio de estado */
+    cursor: default;            /* El cursor se muestra como flecha normal, no como mano de enlace */
 }
 
+/* Efecto al pasar el mouse por encima de la etiqueta de habilidad */
 .skill-tag:hover {
-    background: var(--accent);
+    background: var(--accent);  /* Invierte los colores (fondo rojo, texto blanco) */
     color: white;
-    transform: scale(1.05);
+    transform: scale(1.05);     /* Aumenta muy levemente su tamaño un 5% */
     box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
 }
 
-/* SECCIÓN PROYECTOS */
+/* ==========================================================================
+   SECCIÓN DE PROYECTOS (GRILLA Y TARJETAS)
+   ========================================================================== */
 .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    display: grid;              /* Usa CSS Grid para crear la cuadrícula de proyectos */
+    grid-template-columns: 1fr; /* En móviles: una sola columna que ocupa todo el ancho */
+    gap: 2rem;                  /* Separación entre tarjetas de proyectos */
     margin-top: 2rem;
 }
 
+/* Media Query: Aplicar a partir de pantallas de tamaño tablet/desktop (min 768px ancho) */
 @media (min-width: 768px) {
     .projects-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* Divide el contenedor en dos columnas iguales */
     }
 }
 
@@ -211,7 +225,7 @@ main {
     padding: 1.5rem;
     border: 1px solid var(--glass-border);
     display: flex;
-    flex-direction: column;
+    flex-direction: column;     /* Permite apilar verticalmente título, descripción y canvas/imagen */
 }
 
 .project-card h3 {
@@ -219,39 +233,40 @@ main {
     color: var(--text-main);
 }
 
-/* Contenedor específico para medios (Animación de Rive o Imágenes) */
+/* Contenedores específicos donde va la visual de los proyectos (canvas o imágenes) */
 .rive-container,
 .media-container {
     width: 100%;
-    aspect-ratio: 1;
-    /* Hace que el contenedor sea cuadrado */
+    aspect-ratio: 1;            /* Obliga a que el contenedor mantenga una proporción cuadrada 1:1 */
     background: var(--media-bg);
     border-radius: 12px;
-    overflow: hidden;
+    overflow: hidden;           /* Todo lo que se salga del borde redondeado se recorta */
     margin-top: 1.5rem;
-    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.5); /* Sombra interior (inset) que le da profundidad de hueco */
 }
 
 #rive-canvas,
 .project-canvas {
     width: 100%;
     height: 100%;
-    display: block;
+    display: block;             /* Elimina posibles espacios en blanco fantasmas por ser un elemento en línea */
 }
 
 .project-image {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: cover;          /* Asegura que la imagen llene el área sin distorsionar */
 }
 
-/* FOOTER / CONTACTO */
+/* ==========================================================================
+   PIE DE PÁGINA (FOOTER) / CONTACTO
+   ========================================================================== */
 .footer {
     padding: 4rem 2rem 2rem;
     text-align: center;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto;             /* Centra el footer horizontalmente */
 }
 
 .footer h2 {
@@ -261,68 +276,77 @@ main {
 .social-links {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap;            /* Permite envolver los botones si faltase espacio en pantalla pequeña */
     gap: 1.5rem;
     margin: 2rem 0;
 }
 
 .social-btn {
-    text-decoration: none;
+    text-decoration: none;      /* Quita el subrayado natural de los enlaces (a) */
     color: var(--text-main);
     font-weight: 600;
     padding: 0.8rem 2rem;
     border-radius: 8px;
     background: var(--btn-bg);
     border: 1px solid var(--glass-border);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease;  /* Para transición al hover */
 }
 
+/* Efecto hover en botones sociales */
 .social-btn:hover {
     background: var(--accent);
     border-color: var(--accent);
-    transform: translateY(-3px);
+    transform: translateY(-3px); /* Eleva sutilmente el botón */
     box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
 }
 
 .copyright {
     font-size: 0.9rem;
-    opacity: 0.5;
+    opacity: 0.5;               /* Baja visibilidad (texto apagado) */
     margin-top: 3rem;
 }
 
-/* ANIMACIONES (Aparición suave al hacer scroll) */
+/* ==========================================================================
+   ANIMACIONES GLOBALES
+   ========================================================================== */
+/* Estado inicial invisible: desplazado hacia abajo y con opacidad 0 */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
+    /* Transición con una curva (cubic-bezier) que genera un movimiento elástico y suave */
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Clase que se añade con JavaScript al detectar scroll: Vuelve el elemento a su estado normal visible */
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* CLASES ESPECÍFICAS (Flexbox y Responsividad) */
+/* ==========================================================================
+   TWEAKS ESPECÍFICOS DE COMPONENTES
+   ========================================================================== */
 .model-container {
-    aspect-ratio: 16 / 9;
-    /* Panorámico en escritorio */
+    aspect-ratio: 16 / 9;       /* Hace que el reproductor 3D sea panorámico como la pantalla de una TV en escritorio */
 }
 
-/* RESPONSIVE DESIGN (MÓVIL Y TABLET) */
+/* ==========================================================================
+   DISEÑO RESPONSIVO (TABLETS Y MÓVILES - MAX ANCHO: 768px)
+   Ajusta elementos para pantallas pequeñas
+   ========================================================================== */
 @media (max-width: 768px) {
     main {
         padding: 1rem;
-        gap: 2.5rem;
-        /* Menos espacio entre secciones en móvil */
+        gap: 2.5rem;            /* Reduce espaciado entre secciones */
     }
 
     .hero {
-        min-height: 60vh;
+        min-height: 60vh;       /* El hero usa menos altura en móvil */
         padding: 1rem;
     }
 
     .name {
-        font-size: 2.2rem;
+        font-size: 2.2rem;      /* Títulos más pequeños para que quepan */
     }
 
     h2 {
@@ -331,7 +355,7 @@ main {
 
     .glass-panel,
     .glass-card {
-        padding: 1.5rem;
+        padding: 1.5rem;        /* Menos margen interno para ganar espacio en pantalla */
     }
 
     .avatar-container {
@@ -339,46 +363,48 @@ main {
         height: 120px;
     }
 
-    /* En móviles, hacer que el modelo 3D sea cuadrado para que no quede muy pequeño de altura */
     .model-container {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 1 / 1;    /* El modelo 3D ahora es cuadrado para verse mejor y más grande en orientación vertical (celular) */
     }
 
-    /* Mejorar los botones sociales usando Flexbox en móviles */
+    /* Los botones de contacto se vuelven columnas para mayor legibilidad táctil */
     .social-links {
         flex-direction: column;
         gap: 1rem;
     }
 
     .social-btn {
-        width: 100%;
+        width: 100%;            /* Cada botón ocupa el ancho total */
         text-align: center;
     }
 }
 
-/* BOTÓN DE CAMBIO DE TEMA */
+/* ==========================================================================
+   BOTÓN CAMBIADOR DE TEMA
+   ========================================================================== */
 .theme-toggle {
-    position: fixed;
+    position: fixed;            /* Fija el botón en relación con la pantalla, no con la página (siempre visible) */
     top: 20px;
     right: 20px;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     color: var(--text-main);
-    font-size: 1.5rem;
-    width: 50px;
+    font-size: 1.5rem;          /* Tamaño del emoji */
+    width: 50px;                /* Dimensiones del círculo */
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1000;              /* Asegura que el botón siempre esté por encima del resto del contenido (capas) */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     display: flex;
-    align-items: center;
+    align-items: center;        /* Centra el emoji vertical y horizontalmente */
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Hover: El botón se agranda levemente y rota un poco de forma "juguetona" */
 .theme-toggle:hover {
     transform: scale(1.1) rotate(15deg);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
